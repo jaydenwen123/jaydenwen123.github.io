@@ -181,6 +181,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.2.6" data-path="../chapter1/总结.html">
+            
+                <a href="../chapter1/总结.html">
+            
+                    
+                    第六节 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -368,6 +381,19 @@
             
                     
                     第六节 Bucket的页分裂和页合并
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../chapter3/总结.html">
+            
+                <a href="../chapter3/总结.html">
+            
+                    
+                    第七节 总结
             
                 </a>
             
@@ -685,7 +711,7 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="&#x7B2C;&#x4E94;&#x7AE0;-boltdb&#x7684;db&#x5BF9;&#x8C61;&#x5206;&#x6790;">&#x7B2C;&#x4E94;&#x7AE0; boltdb&#x7684;DB&#x5BF9;&#x8C61;&#x5206;&#x6790;</h1>
-<p>&#x524D;&#x9762;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;boltdb&#x5E95;&#x5C42;&#x5728;&#x78C1;&#x76D8;&#x4E0A;&#x6570;&#x636E;&#x65F6;&#x5982;&#x4F55;&#x7EC4;&#x7EC7;&#x5B58;&#x50A8;&#x7684;&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x4ECB;&#x7ECD;&#x4E86;&#x78C1;&#x76D8;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x53C8;&#x662F;&#x5982;&#x4F55;&#x5B58;&#x50A8;&#x7684;&#x3002;&#x63A5;&#x7740;&#x6211;&#x4EEC;&#x53C8;&#x4ECB;&#x7ECD;&#x4E86;&#x7BA1;&#x7406;kv&#x6570;&#x636E;&#x96C6;&#x5408;&#x7684;Bucket&#x5BF9;&#x8C61;&#x4EE5;&#x53CA;&#x7528;&#x6765;&#x904D;&#x5386;Bucket&#x7684;Cursor&#x5BF9;&#x8C61;&#x3002;&#x6700;&#x540E;&#x6211;&#x4EEC;&#x8BE6;&#x7EC6;&#x7684;&#x4ECB;&#x7ECD;&#x4E86;boltdb&#x4E2D;&#x4E8B;&#x52A1;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x7684;&#x3002;&#x5230;&#x6B64;boltdb&#x4E2D;
+<p>&#x524D;&#x9762;&#x6211;&#x4EEC;&#x4ECB;&#x7ECD;&#x4E86;boltdb&#x5E95;&#x5C42;&#x5728;&#x78C1;&#x76D8;&#x4E0A;&#x6570;&#x636E;&#x65F6;&#x5982;&#x4F55;&#x7EC4;&#x7EC7;&#x5B58;&#x50A8;(page)&#x7684;&#xFF0C;&#x7136;&#x540E;&#x53C8;&#x4ECB;&#x7ECD;&#x4E86;&#x78C1;&#x76D8;&#x4E2D;&#x7684;&#x6570;&#x636E;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x53C8;&#x662F;&#x5982;&#x4F55;&#x5B58;&#x50A8;(node)&#x7684;&#x3002;&#x63A5;&#x7740;&#x6211;&#x4EEC;&#x53C8;&#x4ECB;&#x7ECD;&#x4E86;&#x7BA1;&#x7406;kv&#x6570;&#x636E;&#x96C6;&#x5408;&#x7684;Bucket&#x5BF9;&#x8C61;&#x4EE5;&#x53CA;&#x7528;&#x6765;&#x904D;&#x5386;Bucket&#x7684;Cursor&#x5BF9;&#x8C61;&#x3002;&#x6700;&#x540E;&#x6211;&#x4EEC;&#x8BE6;&#x7EC6;&#x7684;&#x4ECB;&#x7ECD;&#x4E86;boltdb&#x4E2D;&#x4E8B;&#x52A1;&#x662F;&#x5982;&#x4F55;&#x5B9E;&#x73B0;(Tx)&#x7684;&#x3002;&#x5230;&#x6B64;boltdb&#x4E2D;
 &#x5404;&#x4E2A;&#x96F6;&#x6563;&#x7684;&#x90E8;&#x4EF6;&#x6211;&#x4EEC;&#x90FD;&#x4E00;&#x4E00;&#x719F;&#x6089;&#x4E86;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x662F;&#x65F6;&#x5019;&#x5C06;&#x4ED6;&#x4EEC;&#x7EC4;&#x7EC7;&#x5728;&#x4E00;&#x8D77;&#x5DE5;&#x4F5C;&#x4E86;&#x3002;&#x56E0;&#x800C;&#x5C31;&#x6709;&#x4E86;boltdb&#x4E2D;&#x6700;&#x4E0A;&#x5C42;&#x7684;DB&#x5BF9;&#x8C61;&#x3002;&#x672C;&#x7AE0;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;DB&#x5BF9;&#x8C61;&#x76F8;&#x5173;&#x7684;&#x65B9;&#x6CD5;&#x4EE5;&#x53CA;&#x5176;&#x5185;&#x90E8;&#x5B9E;&#x73B0;&#x3002;</p>
 
                                 
@@ -730,7 +756,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第五章 boltdb的DB对象分析","level":"1.6","depth":1,"next":{"title":"第一节 DB结构","level":"1.6.1","depth":2,"path":"chapter5/DB结构.md","ref":"chapter5/DB结构.md","articles":[]},"previous":{"title":"第七节 总结","level":"1.5.7","depth":2,"path":"chapter4/总结.md","ref":"chapter4/总结.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/boltdb的DB对象分析.md","mtime":"2021-04-03T07:11:58.600Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-03T09:41:18.166Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第五章 boltdb的DB对象分析","level":"1.6","depth":1,"next":{"title":"第一节 DB结构","level":"1.6.1","depth":2,"path":"chapter5/DB结构.md","ref":"chapter5/DB结构.md","articles":[]},"previous":{"title":"第七节 总结","level":"1.5.7","depth":2,"path":"chapter4/总结.md","ref":"chapter4/总结.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/boltdb的DB对象分析.md","mtime":"2021-04-15T03:23:04.827Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-15T04:32:51.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

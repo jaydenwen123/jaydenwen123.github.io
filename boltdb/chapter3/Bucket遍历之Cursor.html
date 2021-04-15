@@ -181,6 +181,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.2.6" data-path="../chapter1/总结.html">
+            
+                <a href="../chapter1/总结.html">
+            
+                    
+                    第六节 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -368,6 +381,19 @@
             
                     
                     第六节 Bucket的页分裂和页合并
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="总结.html">
+            
+                <a href="总结.html">
+            
+                    
+                    第七节 总结
             
                 </a>
             
@@ -685,11 +711,13 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="&#x7B2C;&#x4E8C;&#x8282;-bucket&#x904D;&#x5386;&#x4E4B;cursor">&#x7B2C;&#x4E8C;&#x8282; Bucket&#x904D;&#x5386;&#x4E4B;Cursor</h1>
+<p>&#x672C;&#x8282;&#x6211;&#x4EEC;&#x5148;&#x505A;&#x4E00;&#x8282;&#x5185;&#x5BB9;&#x7684;&#x94FA;&#x57AB;&#xFF0C;&#x6682;&#x65F6;&#x4E0D;&#x8BB2;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x3001;&#x83B7;&#x53D6;&#x3001;&#x5220;&#x9664;&#x4E00;&#x4E2A;Bucket&#x3002;&#x800C;&#x662F;&#x4ECB;&#x7ECD;&#x4E00;&#x4E2A;boltdb&#x4E2D;&#x7684;&#x65B0;&#x5BF9;&#x8C61;Cursor&#x3002;</p>
+<p>&#x7B54;&#x6848;&#x662F;&#xFF1A;&#x6240;&#x6709;&#x7684;&#x4E0A;&#x8FF0;&#x64CD;&#x4F5C;&#x90FD;&#x662F;&#x5EFA;&#x7ACB;&#x5728;&#x9996;&#x5148;&#x5B9A;&#x4F4D;&#x5230;&#x4E00;&#x4E2A;Bucket&#x6240;&#x5C5E;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x624D;&#x80FD;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;&#x800C;&#x5B9A;&#x4F4D;&#x4E00;&#x4E2A;Bucket&#x7684;&#x529F;&#x80FD;&#x5C31;&#x662F;&#x7531;Cursor&#x6765;&#x5B8C;&#x6210;&#x7684;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5148;&#x8FD9;&#x4E00;&#x8282;&#x7ED9;&#x5927;&#x5BB6;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;boltdb&#x4E2D;&#x7684;Cursor&#x3002;</p>
 <p>&#x6211;&#x4EEC;&#x5148;&#x770B;&#x4E0B;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x5BF9;Cursor&#x7684;&#x63CF;&#x8FF0;</p>
 <blockquote>
 <p>Cursor represents an iterator that can traverse over all key/value pairs in a bucket in sorted order.</p>
 </blockquote>
-<p>&#x7528;&#x5927;&#x767D;&#x8BDD;&#x8BB2;&#xFF0C;&#x65E2;&#x7136;&#x4E00;&#x4E2A;Bucket&#x903B;&#x8F91;&#x4E0A;&#x662F;&#x4E00;&#x9897;b+&#x6811;&#xFF0C;&#x90A3;&#x5C31;&#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x3002;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;set&#x3001;get&#x64CD;&#x4F5C;&#xFF0C;&#x65E0;&#x975E;&#x662F;&#x8981;&#x5728;Bucket&#x4E0A;&#x5148;&#x627E;&#x5230;&#x5408;&#x9002;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;&#x800C;&#x627E;&#x8FD9;&#x4E2A;&#x884C;&#x4E3A;&#x5C31;&#x662F;&#x4EA4;&#x7531;Cursor&#x6765;&#x5B8C;&#x6210;&#x7684;&#x3002;&#x7B80;&#x800C;&#x8A00;&#x4E4B;&#x5BF9;Bucket&#x8FD9;&#x9897;b+&#x6811;&#x7684;&#x904D;&#x5386;&#x5DE5;&#x4F5C;&#x7531;Cursor&#x6765;&#x6267;&#x884C;&#x3002;&#x4E00;&#x4E2A;Bucket&#x5BF9;&#x8C61;&#x5173;&#x8054;&#x4E00;&#x4E2A;Cursor&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5148;&#x770B;&#x770B;Bucket&#x548C;Cursor&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x7528;&#x5927;&#x767D;&#x8BDD;&#x8BB2;&#xFF0C;&#x65E2;&#x7136;&#x4E00;&#x4E2A;Bucket&#x903B;&#x8F91;&#x4E0A;&#x662F;&#x4E00;&#x9897;b+&#x6811;&#xFF0C;&#x90A3;&#x5C31;&#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x904D;&#x5386;&#x3002;&#x524D;&#x9762;&#x63D0;&#x5230;&#x7684;set&#x3001;get&#x64CD;&#x4F5C;&#xFF0C;&#x65E0;&#x975E;&#x662F;&#x8981;&#x5728;Bucket&#x4E0A;&#x5148;&#x627E;&#x5230;&#x5408;&#x9002;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;&#x800C;&#x201C;&#x627E;&#x201D;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x5C31;&#x662F;&#x4EA4;&#x7531;Cursor&#x6765;&#x5B8C;&#x6210;&#x7684;&#x3002;&#x7B80;&#x800C;&#x8A00;&#x4E4B;&#x5BF9;Bucket&#x8FD9;&#x9897;b+&#x6811;&#x7684;&#x904D;&#x5386;&#x5DE5;&#x4F5C;&#x7531;Cursor&#x6765;&#x6267;&#x884C;&#x3002;&#x4E00;&#x4E2A;Bucket&#x5BF9;&#x8C61;&#x5173;&#x8054;&#x4E00;&#x4E2A;Cursor&#x3002;&#x4E0B;&#x9762;&#x6211;&#x4EEC;&#x5148;&#x770B;&#x770B;Bucket&#x548C;Cursor&#x4E4B;&#x95F4;&#x7684;&#x5173;&#x7CFB;&#x3002;</p>
 <pre><code class="lang-go"><span class="hljs-comment">// Cursor creates a cursor associated with the bucket.</span>
 <span class="hljs-comment">// The cursor is only valid as long as the transaction is open.</span>
 <span class="hljs-comment">// Do not use a cursor after the transaction is closed.</span>
@@ -1260,7 +1288,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第二节 Bucket遍历之Cursor","level":"1.4.2","depth":2,"next":{"title":"第三节 node节点的相关操作","level":"1.4.3","depth":2,"path":"chapter3/node节点的相关操作.md","ref":"chapter3/node节点的相关操作.md","articles":[]},"previous":{"title":"第一节 boltdb的Bucket结构","level":"1.4.1","depth":2,"path":"chapter3/boltdb的Bucket结构.md","ref":"chapter3/boltdb的Bucket结构.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter3/Bucket遍历之Cursor.md","mtime":"2021-04-03T07:11:37.160Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-03T09:41:18.166Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第二节 Bucket遍历之Cursor","level":"1.4.2","depth":2,"next":{"title":"第三节 node节点的相关操作","level":"1.4.3","depth":2,"path":"chapter3/node节点的相关操作.md","ref":"chapter3/node节点的相关操作.md","articles":[]},"previous":{"title":"第一节 boltdb的Bucket结构","level":"1.4.1","depth":2,"path":"chapter3/boltdb的Bucket结构.md","ref":"chapter3/boltdb的Bucket结构.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter3/Bucket遍历之Cursor.md","mtime":"2021-04-15T02:57:08.765Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-15T04:32:51.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

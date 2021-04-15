@@ -181,6 +181,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.2.6" data-path="../chapter1/总结.html">
+            
+                <a href="../chapter1/总结.html">
+            
+                    
+                    第六节 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -368,6 +381,19 @@
             
                     
                     第六节 Bucket的页分裂和页合并
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../chapter3/总结.html">
+            
+                <a href="../chapter3/总结.html">
+            
+                    
+                    第七节 总结
             
                 </a>
             
@@ -740,6 +766,62 @@
     }
     <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
 }
+
+<span class="hljs-comment">// copyall copies into dst a list of all free ids and all pending ids in one sorted list.</span>
+<span class="hljs-comment">// f.count returns the minimum length required for dst.</span>
+<span class="hljs-keyword">func</span> (f *freelist) copyall(dst []pgid) {
+    <span class="hljs-comment">// &#x9996;&#x5148;&#x628A;pending&#x72B6;&#x6001;&#x7684;&#x9875;&#x653E;&#x5230;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#x4E2D;&#xFF0C;&#x5E76;&#x4F7F;&#x5176;&#x6709;&#x5E8F;</span>
+    m := <span class="hljs-built_in">make</span>(pgids, <span class="hljs-number">0</span>, f.pending_count())
+    <span class="hljs-keyword">for</span> _, list := <span class="hljs-keyword">range</span> f.pending {
+        m = <span class="hljs-built_in">append</span>(m, list...)
+    }
+    sort.Sort(m)
+    <span class="hljs-comment">// &#x5408;&#x5E76;&#x4E24;&#x4E2A;&#x6709;&#x5E8F;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x6700;&#x540E;&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#x5230;dst&#x4E2D;</span>
+    mergepgids(dst, f.ids, m)
+}
+
+<span class="hljs-comment">// mergepgids copies the sorted union of a and b into dst.</span>
+<span class="hljs-comment">// If dst is too small, it panics.</span>
+<span class="hljs-comment">// &#x5C06;a&#x548C;b&#x6309;&#x7167;&#x6709;&#x5E8F;&#x5408;&#x5E76;&#x6210;&#x5230;dst&#x4E2D;&#xFF0C;a&#x548C;b&#x6709;&#x5E8F;</span>
+<span class="hljs-keyword">func</span> mergepgids(dst, a, b pgids) {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(dst) &lt; <span class="hljs-built_in">len</span>(a)+<span class="hljs-built_in">len</span>(b) {
+        <span class="hljs-built_in">panic</span>(fmt.Errorf(<span class="hljs-string">&quot;mergepgids bad len %d &lt; %d + %d&quot;</span>, <span class="hljs-built_in">len</span>(dst), <span class="hljs-built_in">len</span>(a), <span class="hljs-built_in">len</span>(b)))
+    }
+    <span class="hljs-comment">// Copy in the opposite slice if one is nil.</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(a) == <span class="hljs-number">0</span> {
+        <span class="hljs-built_in">copy</span>(dst, b)
+        <span class="hljs-keyword">return</span>
+    }
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(b) == <span class="hljs-number">0</span> {
+        <span class="hljs-built_in">copy</span>(dst, a)
+        <span class="hljs-keyword">return</span>
+    }
+
+    <span class="hljs-comment">// Merged will hold all elements from both lists.</span>
+    merged := dst[:<span class="hljs-number">0</span>]
+
+    <span class="hljs-comment">// Assign lead to the slice with a lower starting value, follow to the higher value.</span>
+    lead, follow := a, b
+    <span class="hljs-keyword">if</span> b[<span class="hljs-number">0</span>] &lt; a[<span class="hljs-number">0</span>] {
+        lead, follow = b, a
+    }
+
+    <span class="hljs-comment">// Continue while there are elements in the lead.</span>
+    <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(lead) &gt; <span class="hljs-number">0</span> {
+        <span class="hljs-comment">// Merge largest prefix of lead that is ahead of follow[0].</span>
+        n := sort.Search(<span class="hljs-built_in">len</span>(lead), <span class="hljs-keyword">func</span>(i <span class="hljs-keyword">int</span>) <span class="hljs-keyword">bool</span> { <span class="hljs-keyword">return</span> lead[i] &gt; follow[<span class="hljs-number">0</span>] })
+        merged = <span class="hljs-built_in">append</span>(merged, lead[:n]...)
+        <span class="hljs-keyword">if</span> n &gt;= <span class="hljs-built_in">len</span>(lead) {
+            <span class="hljs-keyword">break</span>
+        }
+
+        <span class="hljs-comment">// Swap lead and follow.</span>
+        lead, follow = follow, lead[n:]
+    }
+
+    <span class="hljs-comment">// Append what&apos;s left in follow.</span>
+    _ = <span class="hljs-built_in">append</span>(merged, follow...)
+}
 </code></pre>
 <p><strong>2. page-&gt;freelist</strong></p>
 <p>&#x4ECE;&#x78C1;&#x76D8;&#x4E2D;&#x52A0;&#x8F7D;&#x7A7A;&#x95F2;&#x9875;&#x4FE1;&#x606F;&#xFF0C;&#x5E76;&#x8F6C;&#x4E3A;freelist&#x7ED3;&#x6784;&#xFF0C;&#x8F6C;&#x6362;&#x65F6;&#xFF0C;&#x4E5F;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x5176;&#x7A7A;&#x95F2;&#x9875;&#x7684;&#x4E2A;&#x6570;&#x7684;&#x5224;&#x65AD;&#x903B;&#x8F91;&#xFF0C;&#x5F53;p.count&#x4E3A;0xFFFF&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x8BFB;&#x53D6;p.ptr&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x8282;&#x6765;&#x8BA1;&#x7B97;&#x5176;&#x7A7A;&#x95F2;&#x9875;&#x7684;&#x4E2A;&#x6570;&#x3002;&#x5426;&#x5219;&#x5219;&#x76F4;&#x63A5;&#x8BFB;&#x53D6;p.ptr&#x4E2D;&#x5B58;&#x653E;&#x7684;&#x6570;&#x636E;&#x4E3A;&#x7A7A;&#x95F2;&#x9875;ids&#x5217;&#x8868;</p>
@@ -769,6 +851,19 @@
 
     <span class="hljs-comment">// Rebuild the page cache.</span>
     f.reindex()
+}
+
+<span class="hljs-comment">// reindex rebuilds the free cache based on available and pending free lists.</span>
+<span class="hljs-keyword">func</span> (f *freelist) reindex() {
+    f.cache = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[pgid]<span class="hljs-keyword">bool</span>, <span class="hljs-built_in">len</span>(f.ids))
+    <span class="hljs-keyword">for</span> _, id := <span class="hljs-keyword">range</span> f.ids {
+        f.cache[id] = <span class="hljs-literal">true</span>
+    }
+    <span class="hljs-keyword">for</span> _, pendingIDs := <span class="hljs-keyword">range</span> f.pending {
+        <span class="hljs-keyword">for</span> _, pendingID := <span class="hljs-keyword">range</span> pendingIDs {
+            f.cache[pendingID] = <span class="hljs-literal">true</span>
+        }
+    }
 }
 </code></pre>
 <p><strong>3. allocate</strong></p>
@@ -824,6 +919,9 @@
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
 }
 </code></pre>
+<blockquote>
+<p>&#x8003;&#x8651;&#x662F;&#x5426;&#x9700;&#x8981;&#x8865;&#x5145;&#x5176;&#x4ED6;&#x7684;freelist&#x7684;&#x65B9;&#x6CD5;</p>
+</blockquote>
 
                                 
                                 </section>
@@ -867,7 +965,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第三节 空闲列表页","level":"1.3.3","depth":2,"next":{"title":"第四节 分支节点页","level":"1.3.4","depth":2,"path":"chapter2/分支节点页.md","ref":"chapter2/分支节点页.md","articles":[]},"previous":{"title":"第二节 元数据页","level":"1.3.2","depth":2,"path":"chapter2/元数据页.md","ref":"chapter2/元数据页.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/空闲列表页.md","mtime":"2021-04-03T08:42:24.143Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-03T09:41:18.166Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第三节 空闲列表页","level":"1.3.3","depth":2,"next":{"title":"第四节 分支节点页","level":"1.3.4","depth":2,"path":"chapter2/分支节点页.md","ref":"chapter2/分支节点页.md","articles":[]},"previous":{"title":"第二节 元数据页","level":"1.3.2","depth":2,"path":"chapter2/元数据页.md","ref":"chapter2/元数据页.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter2/空闲列表页.md","mtime":"2021-04-13T09:00:53.292Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-15T04:32:51.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

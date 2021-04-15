@@ -181,6 +181,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.2.6" data-path="../chapter1/总结.html">
+            
+                <a href="../chapter1/总结.html">
+            
+                    
+                    第六节 总结
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -368,6 +381,19 @@
             
                     
                     第六节 Bucket的页分裂和页合并
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../chapter3/总结.html">
+            
+                <a href="../chapter3/总结.html">
+            
+                    
+                    第七节 总结
             
                 </a>
             
@@ -688,7 +714,7 @@
 <p>Open()&#x65B9;&#x6CD5;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;boltdb&#x7684;DB&#x5BF9;&#x8C61;&#xFF0C;&#x5E95;&#x5C42;&#x4F1A;&#x6267;&#x884C;&#x65B0;&#x5EFA;&#x6216;&#x8005;&#x6253;&#x5F00;&#x5B58;&#x50A8;&#x6570;&#x636E;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x5F53;&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x4E0D;&#x5B58;&#x5728;&#x65F6;&#xFF0C; boltdb&#x5C31;&#x4F1A;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x6587;&#x4EF6;&#x3002;&#x5426;&#x5219;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x76F4;&#x63A5;&#x52A0;&#x8F7D;&#x6307;&#x5B9A;&#x7684;&#x6570;&#x636E;&#x5E93;&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x3002;</p>
 <p>&#x503C;&#x7684;&#x6CE8;&#x610F;&#x662F;&#xFF0C;boltdb&#x4F1A;&#x6839;&#x636E;Open&#x65F6;&#xFF0C;options&#x4F20;&#x9012;&#x7684;&#x53C2;&#x6570;&#x6765;&#x5224;&#x65AD;&#x5230;&#x5E95;&#x52A0;&#x4E92;&#x65A5;&#x9501;&#x8FD8;&#x662F;&#x5171;&#x4EAB;&#x9501;&#x3002;</p>
 <p><strong>&#x65B0;&#x5EFA;&#x65F6;&#xFF1A;</strong> &#x4F1A;&#x8C03;&#x7528;init()&#x65B9;&#x6CD5;&#xFF0C;&#x5185;&#x90E8;&#x4E3B;&#x8981;&#x662F;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x7B2C;0&#x9875;&#x3001;&#x7B2C;1&#x9875;&#x5199;&#x5165;&#x5143;&#x6570;&#x636E;&#x4FE1;&#x606F;&#xFF1B;&#x7B2C;2&#x9875;&#x5199;&#x5165;freelist&#x4FE1;&#x606F;&#xFF1B;&#x7B2C;3&#x9875;&#x5199;&#x5165;bucket leaf&#x4FE1;&#x606F;&#x3002;&#x5E76;&#x6700;&#x7EC8;&#x5237;&#x76D8;&#x3002;</p>
-<p><strong>&#x52A0;&#x8F7D;&#x65F6;&#xFF1A;</strong> &#x4F1A;&#x8BFB;&#x53D6;&#x7B2C;0&#x9875;&#x5185;&#x5BB9;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5143;&#x4FE1;&#x606F;&#x3002;&#x7136;&#x540E;&#x5BF9;&#x9F50;&#x8FDB;&#x884C;&#x6821;&#x9A8C;&#x548C;&#x6821;&#x9A8C;&#xFF0C;&#x5F53;&#x6821;&#x9A8C;&#x901A;&#x8FC7;&#x540E;&#x83B7;&#x53D6;pageSize&#x3002;&#x5426;&#x5219;&#x7684;&#x8BDD;&#xFF0C;&#x8BFB;&#x53D6;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;pagesize(&#x4E00;&#x822C;4k)</p>
+<p><strong>&#x52A0;&#x8F7D;&#x65F6;&#xFF1A;</strong> &#x4F1A;&#x8BFB;&#x53D6;&#x7B2C;0&#x9875;&#x5185;&#x5BB9;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5143;&#x4FE1;&#x606F;&#x3002;&#x7136;&#x540E;&#x5BF9;&#x5176;&#x8FDB;&#x884C;&#x6821;&#x9A8C;&#x548C;&#x6821;&#x9A8C;&#xFF0C;&#x5F53;&#x6821;&#x9A8C;&#x901A;&#x8FC7;&#x540E;&#x83B7;&#x53D6;pageSize&#x3002;&#x5426;&#x5219;&#x7684;&#x8BDD;&#xFF0C;&#x8BFB;&#x53D6;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;pagesize(&#x4E00;&#x822C;4k)</p>
 <p>&#x4E0A;&#x8FF0;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F1A;&#x901A;&#x8FC7;mmap&#x6765;&#x6620;&#x5C04;&#x6570;&#x636E;&#x3002;&#x6700;&#x540E;&#x518D;&#x6839;&#x636E;&#x78C1;&#x76D8;&#x9875;&#x4E2D;&#x7684;freelist&#x6570;&#x636E;&#x521D;&#x59CB;&#x5316;db&#x7684;freelist&#x5B57;&#x6BB5;&#x3002;</p>
 <pre><code class="lang-go"><span class="hljs-comment">// Open creates and opens a database at the given path.</span>
 <span class="hljs-comment">// If the file does not exist then it will be created automatically.</span>
@@ -997,7 +1023,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"第三节 Open()实现分析","level":"1.6.3","depth":2,"next":{"title":"第四节 db.View()实现分析","level":"1.6.4","depth":2,"path":"chapter5/View方法实现分析.md","ref":"chapter5/View方法实现分析.md","articles":[]},"previous":{"title":"第二节 对外接口","level":"1.6.2","depth":2,"path":"chapter5/对外接口.md","ref":"chapter5/对外接口.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/Open方法实现分析.md","mtime":"2021-04-03T07:12:04.185Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-03T09:41:18.166Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"第三节 Open()实现分析","level":"1.6.3","depth":2,"next":{"title":"第四节 db.View()实现分析","level":"1.6.4","depth":2,"path":"chapter5/View方法实现分析.md","ref":"chapter5/View方法实现分析.md","articles":[]},"previous":{"title":"第二节 对外接口","level":"1.6.2","depth":2,"path":"chapter5/对外接口.md","ref":"chapter5/对外接口.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter5/Open方法实现分析.md","mtime":"2021-04-15T03:45:10.077Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-04-15T04:32:51.769Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
